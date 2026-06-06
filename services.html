@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Girlz Run the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:#c8607a; --pink-light:#e8a0ae; --blush:#f5d8df; --cream:#fdf7f2;
+      --parchment:#f9efe6; --ink:#2b2020; --muted:#8a7070;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:"Jost",sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; }
+
+    header { position:sticky; top:0; z-index:100; background:rgba(253,247,242,0.96); backdrop-filter:blur(6px); padding:16px 6%; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--blush); }
+    .logo { font-family:"Dancing Script",cursive; font-size:28px; color:var(--pink); line-height:1; text-decoration:none; }
+    .logo em { display:block; font-family:"Jost",sans-serif; font-style:normal; font-size:10px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; }
+    nav { display:flex; align-items:center; }
+    nav a { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; color:var(--ink); padding:4px 14px; transition:color .2s; }
+    nav a:not(:last-child)::after { content:"|"; margin-left:14px; color:var(--pink-light); }
+    nav a:hover, nav a.active { color:var(--pink); }
+    .hamburger { display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:4px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--ink); border-radius:2px; }
+
+    /* PAGE HERO */
+    .page-hero { background:linear-gradient(150deg,#fdf2f5 0%,var(--cream) 55%,#fef6ee 100%); padding:80px 6% 60px; text-align:center; position:relative; overflow:hidden; }
+    .page-hero::after { content:""; position:absolute; inset:0; background-image:radial-gradient(circle,var(--blush) 1.5px,transparent 1.5px); background-size:28px 28px; opacity:.35; pointer-events:none; }
+    .page-hero h1 { font-family:"Cormorant Garamond",serif; font-size:clamp(42px,6vw,72px); font-weight:600; color:var(--ink); position:relative; z-index:1; }
+    .page-hero h1 em { font-style:italic; color:var(--pink); }
+    .page-hero p { font-size:17px; font-weight:300; color:#5a4545; max-width:560px; margin:18px auto 0; line-height:1.7; position:relative; z-index:1; }
+
+    /* DIVIDER */
+    .divider { text-align:center; font-family:"Dancing Script",cursive; font-size:22px; color:var(--pink-light); padding:10px 0 0; letter-spacing:4px; }
+
+    /* MAIN PACKAGES */
+    .packages-section { padding:70px 6%; }
+    .packages-intro { text-align:center; margin-bottom:50px; }
+    .packages-intro h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .packages-intro .script { font-family:"Dancing Script",cursive; font-size:38px; color:var(--pink); }
+
+    .packages-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; max-width:1080px; margin:0 auto; }
+
+    .pkg-card { background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 6px 24px rgba(0,0,0,.07); transition:transform .28s,box-shadow .28s; display:flex; flex-direction:column; }
+    .pkg-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(200,96,122,.14); }
+
+    .pkg-header { background:linear-gradient(135deg,var(--blush),#fce8ed); padding:36px 28px 24px; text-align:center; }
+    .pkg-icon { font-size:34px; margin-bottom:10px; }
+    .pkg-header h3 { font-family:"Cormorant Garamond",serif; font-size:28px; color:var(--ink); margin-bottom:4px; }
+    .pkg-header .pkg-tagline { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+
+    .pkg-body { padding:28px; flex:1; display:flex; flex-direction:column; }
+    .pkg-desc { font-size:15px; font-weight:300; line-height:1.75; color:#5a4545; margin-bottom:22px; }
+    .pkg-includes { list-style:none; margin-bottom:28px; display:flex; flex-direction:column; gap:8px; }
+    .pkg-includes li { font-size:14px; color:var(--ink); display:flex; align-items:flex-start; gap:8px; }
+    .pkg-includes li::before { content:"♡"; color:var(--pink); font-size:13px; flex-shrink:0; margin-top:1px; }
+    .pkg-cta { margin-top:auto; text-align:center; }
+
+    .btn { display:inline-block; background:var(--pink); color:#fff; padding:13px 34px; border-radius:40px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:background .25s,transform .2s,box-shadow .2s; box-shadow:0 6px 22px rgba(200,96,122,.28); }
+    .btn:hover { background:#b54d67; transform:translateY(-2px); box-shadow:0 10px 28px rgba(200,96,122,.38); }
+    .btn-outline { display:inline-block; border:2px solid var(--pink); color:var(--pink); background:transparent; padding:11px 32px; border-radius:40px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:all .25s; }
+    .btn-outline:hover { background:var(--pink); color:#fff; transform:translateY(-2px); }
+
+    /* BACHELORETTE */
+    .bach-section { background:var(--parchment); padding:70px 6%; }
+    .bach-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+    .bach-copy h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .bach-copy .script { font-family:"Dancing Script",cursive; font-size:44px; color:var(--pink); line-height:1.1; margin-bottom:18px; }
+    .bach-copy p { font-size:15px; font-weight:300; line-height:1.8; color:#5a4545; margin-bottom:24px; }
+    .bach-icons { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .bach-icon-card { background:#fff; border-radius:4px; padding:20px; text-align:center; box-shadow:0 3px 12px rgba(0,0,0,.06); }
+    .bach-icon-card .icon { font-size:26px; margin-bottom:6px; }
+    .bach-icon-card p { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+
+    /* À LA CARTE */
+    .alacarte-section { padding:70px 6%; }
+    .alacarte-intro { text-align:center; margin-bottom:50px; }
+    .alacarte-intro h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .alacarte-intro .script { font-family:"Dancing Script",cursive; font-size:38px; color:var(--pink); }
+    .alacarte-intro p { font-size:15px; font-weight:300; color:#5a4545; max-width:500px; margin:14px auto 0; line-height:1.7; }
+
+    .alacarte-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:900px; margin:0 auto 44px; }
+    .alacarte-card { background:#fff; border:1.5px solid var(--blush); border-radius:4px; padding:24px 22px; text-align:center; transition:border-color .2s,box-shadow .2s,transform .2s; }
+    .alacarte-card:hover { border-color:var(--pink-light); box-shadow:0 8px 24px rgba(200,96,122,.1); transform:translateY(-4px); }
+    .alacarte-card .icon { font-size:24px; margin-bottom:10px; }
+    .alacarte-card h3 { font-family:"Cormorant Garamond",serif; font-size:20px; color:var(--ink); margin-bottom:6px; }
+    .alacarte-card p { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; }
+    .alacarte-cta { text-align:center; }
+
+    /* FOOTER */
+    footer { background:var(--ink); color:rgba(255,255,255,.55); text-align:center; padding:40px 6%; }
+    .social-row { display:flex; justify-content:center; gap:14px; margin-bottom:22px; }
+    .social-btn { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.08); color:rgba(255,255,255,.7); text-decoration:none; display:flex; align-items:center; justify-content:center; transition:background .2s,color .2s,transform .2s; }
+    .social-btn:hover { background:var(--pink); color:#fff; transform:scale(1.1); }
+    footer small { font-size:12px; letter-spacing:1px; }
+
+    @media(max-width:860px) {
+      .hamburger { display:flex; }
+      nav { display:none; position:absolute; top:68px; left:0; right:0; background:rgba(253,247,242,.98); flex-direction:column; padding:20px 0; border-bottom:1px solid var(--blush); gap:4px; }
+      nav.open { display:flex; }
+      nav a { padding:10px 24px; font-size:12px; }
+      nav a::after { display:none; }
+      header { position:relative; flex-wrap:wrap; }
+      .packages-grid { grid-template-columns:1fr; }
+      .bach-inner { grid-template-columns:1fr; }
+      .alacarte-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:500px) {
+      .alacarte-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Girlz Run the World <em>TRAVEL BOLDLY ✈</em></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="https://girlzruntheworlddotblog.wordpress.com" target="_blank">Blog</a>
+      <a href="contact.html">Let's Connect</a>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Let's Plan Your <em>Dream Trip</em></h1>
+    <p>Every journey starts with one decision. Whether you're a first-timer or a seasoned explorer, there's a package made just for you.</p>
+  </div>
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- MAIN PACKAGES -->
+  <section class="packages-section">
+    <div class="packages-intro">
+      <h2>Travel Packages</h2>
+      <p class="script">Choose your adventure ♡</p>
+    </div>
+
+    <div class="packages-grid">
+
+      <!-- GET UP -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">✈️</div>
+          <h3>Get Up Package</h3>
+          <p class="pkg-tagline">For the curious dreamer</p>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">For women who know they want to travel but don't know where to start. This package helps you find direction, clarity, and confidence before you ever book a thing.</p>
+          <ul class="pkg-includes">
+            <li>Destination brainstorm & ideas</li>
+            <li>Travel style assessment</li>
+            <li>Basic trip options overview</li>
+            <li>Estimated cost breakdown</li>
+            <li>Realistic starting plan</li>
+          </ul>
+          <div class="pkg-cta">
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GET OUT -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">🗺️</div>
+          <h3>Get Out Package</h3>
+          <p class="pkg-tagline">For the ready planner</p>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">For women ready to plan the actual trip. You've decided to go — now let's map it all out so you can show up and enjoy every moment.</p>
+          <ul class="pkg-includes">
+            <li>Destination guidance</li>
+            <li>Custom itinerary planning</li>
+            <li>Activity ideas & recommendations</li>
+            <li>Estimated pricing</li>
+            <li>Trip detail organization help</li>
+          </ul>
+          <div class="pkg-cta">
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GO GIRL -->
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">🌍</div>
+          <h3>Go Girl Package</h3>
+          <p class="pkg-tagline">The complete experience</p>
+        </div>
+        <div class="pkg-body">
+          <p class="pkg-desc">A fully mapped-out travel experience for women who want to walk out the door with complete confidence. The most comprehensive package we offer.</p>
+          <ul class="pkg-includes">
+            <li>Destination help & finalizing</li>
+            <li>Full custom itinerary</li>
+            <li>Activities & experiences</li>
+            <li>Transportation suggestions</li>
+            <li>Complete budget breakdown</li>
+            <li>Packing & travel tips</li>
+            <li>Overall trip flow & logistics</li>
+          </ul>
+          <div class="pkg-cta">
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BACHELORETTE -->
+  <section class="bach-section">
+    <div class="bach-inner">
+      <div class="bach-copy">
+        <h2>Special Planning</h2>
+        <p class="script">Bachelorette & Group Travel 💕</p>
+        <p>Planning a girls' trip, birthday getaway, bachelorette weekend, or group adventure? I've got you covered from destination to details so the whole squad can show up and celebrate without the stress.</p>
+        <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Let's Plan It ♡</a>
+      </div>
+      <div class="bach-icons">
+        <div class="bach-icon-card"><div class="icon">🥂</div><p>Bachelorette</p></div>
+        <div class="bach-icon-card"><div class="icon">🎂</div><p>Birthday Trips</p></div>
+        <div class="bach-icon-card"><div class="icon">👯‍♀️</div><p>Girls' Getaways</p></div>
+        <div class="bach-icon-card"><div class="icon">✈️</div><p>Group Travel</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À LA CARTE -->
+  <section class="alacarte-section">
+    <div class="alacarte-intro">
+      <h2>Add-Ons</h2>
+      <p class="script">À la carte services</p>
+      <p>Need just one thing? Pick a single service and let's make it happen.</p>
+    </div>
+
+    <div class="alacarte-grid">
+      <div class="alacarte-card">
+        <div class="icon">📋</div>
+        <h3>Visa Consultation</h3>
+        <p>Guidance on visa requirements and how to get started.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">🗓️</div>
+        <h3>Custom Itinerary</h3>
+        <p>A day-by-day itinerary built around your goals and travel style.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">💸</div>
+        <h3>Budget Trip Ideas</h3>
+        <p>Travel inspiration tailored to your budget — no luxury required.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">🎯</div>
+        <h3>Activity List</h3>
+        <p>A curated list of things to do, see, and experience at your destination.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">🔍</div>
+        <h3>Destination Research</h3>
+        <p>In-depth research on your chosen destination: safety, culture, seasons, and more.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">🤝</div>
+        <h3>Travel Planning Support</h3>
+        <p>General support and guidance throughout your planning process.</p>
+      </div>
+    </div>
+
+    <div class="alacarte-cta">
+      <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn-outline">Get Started →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="social-row">
+      <a class="social-btn" href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a class="social-btn" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+      </a>
+      <a class="social-btn" href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a class="social-btn" href="https://youtube.com" target="_blank" aria-label="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+    </div>
+    <p>Get Up · Get Out · Go Girl</p>
+    <small>2026 Girlz Run the World ©</small>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
+</body>
+</html>

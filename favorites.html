@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorites — Girlz Run the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:#c8607a; --pink-light:#e8a0ae; --blush:#f5d8df; --cream:#fdf7f2;
+      --parchment:#f9efe6; --ink:#2b2020; --muted:#8a7070;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:"Jost",sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; }
+
+    header { position:sticky; top:0; z-index:100; background:rgba(253,247,242,0.96); backdrop-filter:blur(6px); padding:16px 6%; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--blush); }
+    .logo { font-family:"Dancing Script",cursive; font-size:28px; color:var(--pink); line-height:1; text-decoration:none; }
+    .logo em { display:block; font-family:"Jost",sans-serif; font-style:normal; font-size:10px; letter-spacing:3px; color:var(--muted); text-transform:uppercase; }
+    nav { display:flex; align-items:center; }
+    nav a { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; color:var(--ink); padding:4px 14px; transition:color .2s; }
+    nav a:not(:last-child)::after { content:"|"; margin-left:14px; color:var(--pink-light); }
+    nav a:hover, nav a.active { color:var(--pink); }
+    .hamburger { display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:4px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--ink); border-radius:2px; }
+
+    /* PAGE HERO */
+    .page-hero { background:linear-gradient(150deg,#fdf2f5 0%,var(--cream) 55%,#fef6ee 100%); padding:80px 6% 60px; text-align:center; position:relative; overflow:hidden; }
+    .page-hero::after { content:""; position:absolute; inset:0; background-image:radial-gradient(circle,var(--blush) 1.5px,transparent 1.5px); background-size:28px 28px; opacity:.35; pointer-events:none; }
+    .page-hero h1 { font-family:"Cormorant Garamond",serif; font-size:clamp(42px,6vw,70px); font-weight:600; color:var(--ink); position:relative; z-index:1; }
+    .page-hero h1 em { font-style:italic; color:var(--pink); }
+    .page-hero p { font-size:17px; font-weight:300; color:#5a4545; max-width:520px; margin:16px auto 0; line-height:1.7; position:relative; z-index:1; }
+
+    /* SECTIONS */
+    .fav-section { padding:70px 6%; }
+    .fav-section:nth-child(even) { background:var(--parchment); }
+    .fav-section h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; text-align:center; }
+    .fav-section .script { font-family:"Dancing Script",cursive; font-size:38px; color:var(--pink); text-align:center; display:block; margin-bottom:40px; }
+
+    /* LINK GRID */
+    .link-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1000px; margin:0 auto; }
+    .link-grid.two-col { grid-template-columns:repeat(2,1fr); max-width:680px; }
+    .link-grid.four-col { grid-template-columns:repeat(4,1fr); max-width:1000px; }
+
+    .fav-card { background:#fff; border-radius:6px; padding:28px 22px; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,.07); text-decoration:none; color:var(--ink); transition:transform .25s,box-shadow .25s,border-color .25s; border:1.5px solid var(--blush); display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .fav-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(200,96,122,.13); border-color:var(--pink-light); }
+    .fav-card .icon { font-size:32px; }
+    .fav-card h3 { font-family:"Cormorant Garamond",serif; font-size:22px; color:var(--ink); }
+    .fav-card p { font-size:13px; font-weight:300; color:var(--muted); line-height:1.6; }
+    .fav-card .cta { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--pink); margin-top:4px; }
+
+    /* APP GRID */
+    .app-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1000px; margin:0 auto; }
+    .app-card { background:#fff; border-radius:6px; padding:22px 16px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,.06); border:1.5px solid var(--blush); text-decoration:none; color:var(--ink); transition:transform .2s,box-shadow .2s; }
+    .app-card:hover { transform:translateY(-4px); box-shadow:0 10px 24px rgba(200,96,122,.12); border-color:var(--pink-light); }
+    .app-card .icon { font-size:28px; margin-bottom:8px; }
+    .app-card h3 { font-family:"Cormorant Garamond",serif; font-size:18px; margin-bottom:4px; }
+    .app-card p { font-size:12px; color:var(--muted); }
+
+    /* FOOTER */
+    footer { background:var(--ink); color:rgba(255,255,255,.55); text-align:center; padding:40px 6%; }
+    .social-row { display:flex; justify-content:center; gap:14px; margin-bottom:22px; }
+    .social-btn { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.08); color:rgba(255,255,255,.7); text-decoration:none; display:flex; align-items:center; justify-content:center; transition:background .2s,color .2s,transform .2s; }
+    .social-btn:hover { background:var(--pink); color:#fff; transform:scale(1.1); }
+    footer small { font-size:12px; letter-spacing:1px; }
+
+    @media(max-width:860px) {
+      .hamburger { display:flex; }
+      nav { display:none; position:absolute; top:68px; left:0; right:0; background:rgba(253,247,242,.98); flex-direction:column; padding:20px 0; border-bottom:1px solid var(--blush); gap:4px; }
+      nav.open { display:flex; }
+      nav a { padding:10px 24px; font-size:12px; }
+      nav a::after { display:none; }
+      header { position:relative; flex-wrap:wrap; }
+      .link-grid { grid-template-columns:repeat(2,1fr); }
+      .link-grid.four-col { grid-template-columns:repeat(2,1fr); }
+      .link-grid.two-col { grid-template-columns:1fr; }
+      .app-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:500px) {
+      .link-grid { grid-template-columns:1fr; }
+      .app-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Girlz Run the World <em>TRAVEL BOLDLY ✈</em></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="favorites.html" class="active">Favorites</a>
+      <a href="https://girlzruntheworlddotblog.wordpress.com" target="_blank">Blog</a>
+      <a href="contact.html">Let's Connect</a>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>My <em>Favorites</em></h1>
+    <p>Everything I actually use, love, and recommend — from booking platforms to packing must-haves. All in one place, just for you.</p>
+  </div>
+
+  <!-- BOOKING LINKS -->
+  <section class="fav-section">
+    <h2>Book Your Trip</h2>
+    <span class="script">Booking Links ♡</span>
+    <div class="link-grid">
+      <a class="fav-card" href="https://booking.com" target="_blank" rel="noopener">
+        <div class="icon">🏨</div>
+        <h3>Booking.com</h3>
+        <p>Hotels, apartments, hostels — find accommodation for every budget worldwide.</p>
+        <span class="cta">Explore →</span>
+      </a>
+      <a class="fav-card" href="https://airbnb.com" target="_blank" rel="noopener">
+        <div class="icon">🏡</div>
+        <h3>Airbnb</h3>
+        <p>Unique stays, entire homes, and local experiences all over the world.</p>
+        <span class="cta">Explore →</span>
+      </a>
+      <a class="fav-card" href="https://amazon.com" target="_blank" rel="noopener">
+        <div class="icon">📦</div>
+        <h3>Amazon Finds</h3>
+        <p>My curated travel essentials — packing cubes, accessories, gear, and more.</p>
+        <span class="cta">Shop →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- GETTING AROUND -->
+  <section class="fav-section">
+    <h2>Getting Around</h2>
+    <span class="script">Ride & Transport ✈</span>
+    <div class="link-grid two-col">
+      <a class="fav-card" href="https://uber.com" target="_blank" rel="noopener">
+        <div class="icon">🚗</div>
+        <h3>Uber</h3>
+        <p>Reliable rides in hundreds of cities worldwide. My go-to for airport transfers and getting around.</p>
+        <span class="cta">Get a Ride →</span>
+      </a>
+      <a class="fav-card" href="https://lyft.com" target="_blank" rel="noopener">
+        <div class="icon">🚙</div>
+        <h3>Lyft</h3>
+        <p>Another great option for ridesharing, especially in the US. Easy, affordable, and reliable.</p>
+        <span class="cta">Get a Ride →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- OUTFITS & LOOKS -->
+  <section class="fav-section">
+    <h2>Style & Looks</h2>
+    <span class="script">Outfit Inspo 👗</span>
+    <div class="link-grid">
+      <a class="fav-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">👗</div>
+        <h3>Travel Outfits</h3>
+        <p>Cute, comfortable, and packable outfits perfect for every destination.</p>
+        <span class="cta">Shop the Look →</span>
+      </a>
+      <a class="fav-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">👙</div>
+        <h3>Beach & Resort Wear</h3>
+        <p>Swimsuits, cover-ups, and resort-ready looks I actually wear on trips.</p>
+        <span class="cta">Shop the Look →</span>
+      </a>
+      <a class="fav-card" href="#" target="_blank" rel="noopener">
+        <div class="icon">👜</div>
+        <h3>Travel Bags & Accessories</h3>
+        <p>The bags, pouches, and accessories that make packing so much easier.</p>
+        <span class="cta">Shop Now →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- HELPFUL APPS -->
+  <section class="fav-section">
+    <h2>On My Phone</h2>
+    <span class="script">Helpful Travel Apps 📱</span>
+    <div class="app-grid">
+      <a class="app-card" href="https://google.com/maps" target="_blank" rel="noopener">
+        <div class="icon">🗺️</div>
+        <h3>Google Maps</h3>
+        <p>Works offline — save maps before you land.</p>
+      </a>
+      <a class="app-card" href="https://duolingo.com" target="_blank" rel="noopener">
+        <div class="icon">🌐</div>
+        <h3>Duolingo</h3>
+        <p>Learn basics of any language before you go.</p>
+      </a>
+      <a class="app-card" href="https://xe.com" target="_blank" rel="noopener">
+        <div class="icon">💱</div>
+        <h3>XE Currency</h3>
+        <p>Real-time currency conversion at your fingertips.</p>
+      </a>
+      <a class="app-card" href="https://google.com/travel" target="_blank" rel="noopener">
+        <div class="icon">✈️</div>
+        <h3>Google Flights</h3>
+        <p>Track prices and find the best deals on flights.</p>
+      </a>
+      <a class="app-card" href="https://tripit.com" target="_blank" rel="noopener">
+        <div class="icon">📋</div>
+        <h3>TripIt</h3>
+        <p>Organize all your bookings in one travel plan.</p>
+      </a>
+      <a class="app-card" href="https://wise.com" target="_blank" rel="noopener">
+        <div class="icon">💳</div>
+        <h3>Wise</h3>
+        <p>Low-fee international transfers and travel card.</p>
+      </a>
+      <a class="app-card" href="https://whatsapp.com" target="_blank" rel="noopener">
+        <div class="icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Stay connected internationally for free.</p>
+      </a>
+      <a class="app-card" href="https://translate.google.com" target="_blank" rel="noopener">
+        <div class="icon">🔤</div>
+        <h3>Google Translate</h3>
+        <p>Real-time text and camera translation in any language.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="social-row">
+      <a class="social-btn" href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a class="social-btn" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+      </a>
+      <a class="social-btn" href="https://pinterest.com" target="_blank" aria-label="Pinterest">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      </a>
+    </div>
+    <p>Get Up · Get Out · Go Girl</p>
+    <small>2026 Girlz Run the World ©</small>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
+</body>
+</html>
