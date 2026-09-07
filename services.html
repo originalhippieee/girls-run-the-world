@@ -34,27 +34,50 @@
     /* DIVIDER */
     .divider { text-align:center; font-family:"Dancing Script",cursive; font-size:22px; color:var(--pink-light); padding:10px 0 0; letter-spacing:4px; }
 
+    /* WHICH PACKAGE PROGRESSION */
+    .progression-section { padding:60px 6% 20px; }
+    .progression-intro { text-align:center; margin-bottom:36px; }
+    .progression-intro h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .progression-intro .script { font-family:"Dancing Script",cursive; font-size:34px; color:var(--pink); }
+    .progression-row { display:flex; align-items:stretch; justify-content:center; gap:16px; max-width:920px; margin:0 auto; flex-wrap:nowrap; }
+    .progression-step { flex:1 1 0; background:#fff; border:1.5px solid var(--blush); border-radius:12px; padding:24px 20px; text-align:center; display:flex; flex-direction:column; gap:6px; box-shadow:0 4px 16px rgba(0,0,0,.05); }
+    .progression-step .stage-label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--pink); font-weight:600; }
+    .progression-step h3 { font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--ink); }
+    .progression-step .p-question { font-style:italic; font-size:13px; color:var(--muted); font-weight:300; margin:6px 0 10px; line-height:1.5; }
+    .progression-step .p-price { font-family:"Cormorant Garamond",serif; font-size:26px; color:var(--pink); font-weight:600; }
+    .progression-arrow { display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--pink-light); flex:0 0 auto; }
+    .arrow-v { display:none; }
+
     /* MAIN PACKAGES */
-    .packages-section { padding:70px 6%; }
+    .packages-section { padding:50px 6% 70px; }
     .packages-intro { text-align:center; margin-bottom:50px; }
     .packages-intro h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
     .packages-intro .script { font-family:"Dancing Script",cursive; font-size:38px; color:var(--pink); }
 
     .packages-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; max-width:1080px; margin:0 auto; }
 
-    .pkg-card { background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 6px 24px rgba(0,0,0,.07); transition:transform .28s,box-shadow .28s; display:flex; flex-direction:column; }
+    .pkg-card { position:relative; background:#fff; border-radius:6px; overflow:hidden; box-shadow:0 6px 24px rgba(0,0,0,.07); transition:transform .28s,box-shadow .28s; display:flex; flex-direction:column; }
     .pkg-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(200,96,122,.14); }
+    .pkg-card.featured { border:2px solid var(--pink); }
 
-    .pkg-header { background:linear-gradient(135deg,var(--blush),#fce8ed); padding:36px 28px 24px; text-align:center; }
-    .pkg-icon { font-size:34px; margin-bottom:10px; }
-    .pkg-header h3 { font-family:"Cormorant Garamond",serif; font-size:28px; color:var(--ink); margin-bottom:4px; }
-    .pkg-header .pkg-tagline { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+    .most-complete-badge { position:absolute; top:14px; right:14px; background:var(--pink); color:#fff; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:6px 12px; border-radius:20px; z-index:2; box-shadow:0 3px 10px rgba(0,0,0,.15); }
 
-    .pkg-body { padding:28px; flex:1; display:flex; flex-direction:column; }
-    .pkg-desc { font-size:15px; font-weight:300; line-height:1.75; color:#5a4545; margin-bottom:22px; }
-    .pkg-includes { list-style:none; margin-bottom:28px; display:flex; flex-direction:column; gap:8px; }
-    .pkg-includes li { font-size:14px; color:var(--ink); display:flex; align-items:flex-start; gap:8px; }
-    .pkg-includes li::before { content:"♡"; color:var(--pink); font-size:13px; flex-shrink:0; margin-top:1px; }
+    .pkg-header { background:linear-gradient(135deg,var(--blush),#fce8ed); padding:36px 28px 20px; text-align:center; }
+    .pkg-icon { font-size:34px; margin-bottom:8px; }
+    .pkg-stage { display:inline-block; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--pink); font-weight:700; margin-bottom:6px; }
+    .pkg-header h3 { font-family:"Cormorant Garamond",serif; font-size:30px; color:var(--ink); margin-bottom:4px; letter-spacing:1px; }
+    .pkg-header .pkg-tagline { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+    .pkg-price { font-family:"Cormorant Garamond",serif; font-size:34px; font-weight:600; color:var(--pink); }
+
+    .pkg-body { padding:26px 28px 28px; flex:1; display:flex; flex-direction:column; }
+    .pkg-bestfor { font-family:"Dancing Script",cursive; font-size:19px; color:var(--pink); text-align:center; line-height:1.35; margin-bottom:14px; }
+    .pkg-desc { font-size:14px; font-weight:300; line-height:1.7; color:#5a4545; margin-bottom:18px; }
+    .pkg-includes-heading { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .pkg-includes { list-style:none; margin-bottom:18px; display:flex; flex-direction:column; gap:6px; }
+    .pkg-includes li { font-size:13px; color:var(--ink); display:flex; align-items:flex-start; gap:7px; line-height:1.45; }
+    .pkg-includes li::before { content:"♡"; color:var(--pink); font-size:11px; flex-shrink:0; margin-top:2px; }
+    .pkg-callout { background:var(--parchment); border:1px dashed var(--pink-light); border-radius:6px; padding:12px 14px; font-size:12.5px; color:#5a4545; margin-bottom:18px; line-height:1.5; }
+    .pkg-callout strong { color:var(--pink); }
     .pkg-cta { margin-top:auto; text-align:center; }
 
     .btn { display:inline-block; background:var(--pink); color:#fff; padding:13px 34px; border-radius:40px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:background .25s,transform .2s,box-shadow .2s; box-shadow:0 6px 22px rgba(200,96,122,.28); }
@@ -62,16 +85,28 @@
     .btn-outline { display:inline-block; border:2px solid var(--pink); color:var(--pink); background:transparent; padding:11px 32px; border-radius:40px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:all .25s; }
     .btn-outline:hover { background:var(--pink); color:#fff; transform:translateY(-2px); }
 
-    /* BACHELORETTE */
-    .bach-section { background:var(--parchment); padding:70px 6%; }
-    .bach-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
-    .bach-copy h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
-    .bach-copy .script { font-family:"Dancing Script",cursive; font-size:44px; color:var(--pink); line-height:1.1; margin-bottom:18px; }
-    .bach-copy p { font-size:15px; font-weight:300; line-height:1.8; color:#5a4545; margin-bottom:24px; }
-    .bach-icons { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .bach-icon-card { background:#fff; border-radius:4px; padding:20px; text-align:center; box-shadow:0 3px 12px rgba(0,0,0,.06); }
-    .bach-icon-card .icon { font-size:26px; margin-bottom:6px; }
-    .bach-icon-card p { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+    /* SPECIAL PLANNING */
+    .special-section { background:var(--parchment); padding:70px 6%; }
+    .special-intro { text-align:center; margin-bottom:46px; }
+    .special-intro h2 { font-family:"Cormorant Garamond",serif; font-size:13px; letter-spacing:5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .special-intro .script { font-family:"Dancing Script",cursive; font-size:38px; color:var(--pink); }
+    .special-intro p { font-size:14px; font-weight:300; color:#5a4545; max-width:520px; margin:12px auto 0; line-height:1.7; }
+
+    .special-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1080px; margin:0 auto; align-items:stretch; }
+    .special-card { background:#fff; border-radius:8px; padding:26px 20px; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,.06); display:flex; flex-direction:column; }
+    .special-card .icon { font-size:28px; margin-bottom:10px; }
+    .special-card h3 { font-family:"Cormorant Garamond",serif; font-size:21px; color:var(--ink); margin-bottom:8px; }
+    .special-card .special-hook { font-family:"Dancing Script",cursive; font-size:16px; color:var(--pink); margin-bottom:8px; line-height:1.3; }
+    .special-card p.special-desc { font-size:12.5px; font-weight:300; color:var(--muted); line-height:1.6; margin-bottom:14px; }
+    .special-card ul { list-style:none; text-align:left; margin-bottom:16px; display:flex; flex-direction:column; gap:4px; }
+    .special-card ul li { font-size:11.5px; color:#5a4545; display:flex; gap:6px; align-items:flex-start; line-height:1.4; }
+    .special-card ul li::before { content:"·"; color:var(--pink); font-weight:700; }
+    .special-card .special-cta { margin-top:auto; }
+    .special-card .special-cta a { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--pink); text-decoration:none; }
+    .special-card .special-cta a:hover { text-decoration:underline; }
+
+    .special-card.featured { background:linear-gradient(160deg,#fdf2f5,var(--blush)); border:1.5px solid var(--pink-light); position:relative; }
+    .special-card.featured::before { content:"SIGNATURE ADVENTURE"; position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:var(--pink); color:#fff; font-size:8.5px; font-weight:700; letter-spacing:1.5px; padding:5px 12px; border-radius:20px; white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,.15); }
 
     /* À LA CARTE */
     .alacarte-section { padding:70px 6%; }
@@ -102,11 +137,15 @@
       nav a { padding:10px 24px; font-size:12px; }
       nav a::after { display:none; }
       header { position:relative; flex-wrap:wrap; }
+      .progression-row { flex-direction:column; }
+      .arrow-h { display:none; }
+      .arrow-v { display:block; }
       .packages-grid { grid-template-columns:1fr; }
-      .bach-inner { grid-template-columns:1fr; }
+      .special-grid { grid-template-columns:repeat(2,1fr); }
       .alacarte-grid { grid-template-columns:repeat(2,1fr); }
     }
     @media(max-width:500px) {
+      .special-grid { grid-template-columns:1fr; }
       .alacarte-grid { grid-template-columns:1fr; }
     }
   </style>
@@ -129,9 +168,39 @@
   <!-- PAGE HERO -->
   <div class="page-hero">
     <h1>Let's Plan Your <em>Dream Trip</em></h1>
-    <p>Every journey starts with one decision. Whether you're a first-timer or a seasoned explorer, there's a package made just for you.</p>
+    <p>Every journey starts with one decision. Whether you're a first timer or a seasoned explorer, there's a package made just for you.</p>
   </div>
   <div class="divider">✦ ✦ ✦</div>
+
+  <!-- WHICH PACKAGE DO I NEED -->
+  <section class="progression-section">
+    <div class="progression-intro">
+      <h2>Not Sure Where to Start?</h2>
+      <p class="script">Which Package Do I Need? ♡</p>
+    </div>
+    <div class="progression-row">
+      <div class="progression-step">
+        <span class="stage-label">Discover</span>
+        <h3>Get Up</h3>
+        <p class="p-question">"Help me figure out where to go."</p>
+        <span class="p-price">$49</span>
+      </div>
+      <div class="progression-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="progression-step">
+        <span class="stage-label">Plan</span>
+        <h3>Get Out</h3>
+        <p class="p-question">"I know where I'm going. Plan my trip."</p>
+        <span class="p-price">$99</span>
+      </div>
+      <div class="progression-arrow"><span class="arrow-h">→</span><span class="arrow-v">↓</span></div>
+      <div class="progression-step">
+        <span class="stage-label">Prepare + Go</span>
+        <h3>Go Girl</h3>
+        <p class="p-question">"Plan it all and get me ready to go."</p>
+        <span class="p-price">$199</span>
+      </div>
+    </div>
+  </section>
 
   <!-- MAIN PACKAGES -->
   <section class="packages-section">
@@ -146,20 +215,28 @@
       <div class="pkg-card">
         <div class="pkg-header">
           <div class="pkg-icon">✈️</div>
-          <h3>Get Up Package</h3>
-          <p class="pkg-tagline">For the curious dreamer</p>
+          <span class="pkg-stage">Discover</span>
+          <h3>Get Up</h3>
+          <p class="pkg-tagline">Trip Discovery</p>
+          <div class="pkg-price">$49</div>
         </div>
         <div class="pkg-body">
-          <p class="pkg-desc">For women who know they want to travel but don't know where to start. This package helps you find direction, clarity, and confidence before you ever book a thing.</p>
+          <p class="pkg-bestfor">"I want to travel, but I don't know where to go yet."</p>
+          <p class="pkg-desc">You give me your budget, dates, departure city, and travel vibe. I'll research your options and help you choose a destination that actually makes sense for you.</p>
           <ul class="pkg-includes">
-            <li>Destination brainstorm & ideas</li>
-            <li>Travel style assessment</li>
-            <li>Basic trip options overview</li>
-            <li>Estimated cost breakdown</li>
-            <li>Realistic starting plan</li>
+            <li>2–3 personalized destination options</li>
+            <li>Recommendations based on budget, dates & interests</li>
+            <li>Estimated flight costs</li>
+            <li>Estimated accommodation costs</li>
+            <li>Suggested trip length</li>
+            <li>Accommodation options/styles</li>
+            <li>Types of activities & experiences available</li>
+            <li>Estimated overall trip budget</li>
+            <li>Best time/season information</li>
+            <li>Final destination recommendation</li>
           </ul>
           <div class="pkg-cta">
-            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Get Up ♡</a>
           </div>
         </div>
       </div>
@@ -168,44 +245,70 @@
       <div class="pkg-card">
         <div class="pkg-header">
           <div class="pkg-icon">🗺️</div>
-          <h3>Get Out Package</h3>
-          <p class="pkg-tagline">For the ready planner</p>
+          <span class="pkg-stage">Plan</span>
+          <h3>Get Out</h3>
+          <p class="pkg-tagline">Full Trip Planning</p>
+          <div class="pkg-price">$99</div>
         </div>
         <div class="pkg-body">
-          <p class="pkg-desc">For women ready to plan the actual trip. You've decided to go — now let's map it all out so you can show up and enjoy every moment.</p>
+          <p class="pkg-bestfor">"I know where I'm going. I just need someone to plan it."</p>
+          <p class="pkg-desc">You've picked the destination. Now I'll turn it into an actual trip with accommodations, activities, costs, and a personalized day by day itinerary.</p>
           <ul class="pkg-includes">
-            <li>Destination guidance</li>
-            <li>Custom itinerary planning</li>
-            <li>Activity ideas & recommendations</li>
-            <li>Estimated pricing</li>
-            <li>Trip detail organization help</li>
+            <li>Accommodation recommendations</li>
+            <li>Activity & excursion recommendations</li>
+            <li>Restaurant recommendations</li>
+            <li>Nightlife recommendations when applicable</li>
+            <li>Day by day custom itinerary</li>
+            <li>Transportation recommendations</li>
+            <li>Estimated transportation costs</li>
+            <li>Estimated activity costs</li>
+            <li>Accommodation cost estimates</li>
+            <li>Complete estimated trip budget</li>
+            <li>Booking links/recommendations</li>
+            <li>Trip organized with location & timing in mind</li>
           </ul>
+          <div class="pkg-callout">Haven't chosen a destination yet? No worries,Add Destination Discovery for $25. </div>
           <div class="pkg-cta">
-            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Get Out ♡</a>
           </div>
         </div>
       </div>
 
       <!-- GO GIRL -->
-      <div class="pkg-card">
+      <div class="pkg-card featured">
+        <div class="most-complete-badge">Most Complete</div>
         <div class="pkg-header">
           <div class="pkg-icon">🌍</div>
-          <h3>Go Girl Package</h3>
-          <p class="pkg-tagline">The complete experience</p>
+          <span class="pkg-stage">Prepare + Go</span>
+          <h3>Go Girl</h3>
+          <p class="pkg-tagline">The Complete Travel Experience</p>
+          <div class="pkg-price">$199</div>
         </div>
         <div class="pkg-body">
-          <p class="pkg-desc">A fully mapped-out travel experience for women who want to walk out the door with complete confidence. The most comprehensive package we offer.</p>
+          <p class="pkg-bestfor">"I want the trip planned AND I want to know exactly what I need before I leave."</p>
+          <p class="pkg-desc">From choosing where to stay to knowing what to pack, Go Girl gives you the complete trip plan plus the practical information you need to confidently walk out the door and GO.</p>
+          <p class="pkg-includes-heading">Everything in Get Out, plus:</p>
           <ul class="pkg-includes">
-            <li>Destination help & finalizing</li>
-            <li>Full custom itinerary</li>
-            <li>Activities & experiences</li>
-            <li>Transportation suggestions</li>
-            <li>Complete budget breakdown</li>
-            <li>Packing & travel tips</li>
-            <li>Overall trip flow & logistics</li>
+            <li>Personalized packing list</li>
+            <li>Passport validity information</li>
+            <li>Visa/entry requirement research</li>
+            <li>Vaccination/health entry requirement research</li>
+            <li>Airport & arrival information</li>
+            <li>Airport to accommodation transportation plan</li>
+            <li>Local transportation guide</li>
+            <li>Currency & payment information</li>
+            <li>SIM/eSIM/Wi-Fi information</li>
+            <li>Destination safety information</li>
+            <li>Cultural etiquette & local customs</li>
+            <li>Weather expectations</li>
+            <li>Emergency information</li>
+            <li>Recommended travel apps</li>
+            <li>Personalized "Before You Go" checklist</li>
+            <li>Final estimated trip budget</li>
           </ul>
+          <div class="pkg-callout"><strong>Your final deliverable:</strong> a personalized <strong>GIRLZ RUN THE WORLD TRAVEL GUIDE</strong> — your full itinerary and everything you need to know, organized in one place. ✈</div>
           <div class="pkg-cta">
-            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Book Now ♡</a>
+            <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Go Girl ♡</a>
           </div>
         </div>
       </div>
@@ -213,21 +316,72 @@
     </div>
   </section>
 
-  <!-- BACHELORETTE -->
-  <section class="bach-section">
-    <div class="bach-inner">
-      <div class="bach-copy">
-        <h2>Special Planning</h2>
-        <p class="script">Bachelorette & Group Travel 💕</p>
-        <p>Planning a girls' trip, birthday getaway, bachelorette weekend, or group adventure? I've got you covered from destination to details so the whole squad can show up and celebrate without the stress.</p>
-        <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn">Let's Plan It ♡</a>
+  <!-- SPECIAL PLANNING -->
+  <section class="special-section">
+    <div class="special-intro">
+      <h2>Special Planning</h2>
+      <p class="script">For the moments that call for something extra ♡</p>
+      <p>Celebrations, surprises, and squads these trips get their own kind of planning.</p>
+    </div>
+
+    <div class="special-grid">
+
+      <div class="special-card">
+        <div class="icon">💍</div>
+        <h3>Proposal Trips</h3>
+        <p class="special-desc">Romantic travel planning centered around the proposal.</p>
+        <ul>
+          <li>Destination & accommodations</li>
+          <li>Proposal location ideas</li>
+          <li>Romantic experiences</li>
+          <li>Photographer recs when applicable</li>
+          <li>Dinner/celebration ideas</li>
+          <li>Trip itinerary & logistics</li>
+        </ul>
+        <div class="special-cta"><a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank">Let's Plan It ♡</a></div>
       </div>
-      <div class="bach-icons">
-        <div class="bach-icon-card"><div class="icon">🥂</div><p>Bachelorette</p></div>
-        <div class="bach-icon-card"><div class="icon">🎂</div><p>Birthday Trips</p></div>
-        <div class="bach-icon-card"><div class="icon">👯‍♀️</div><p>Girls' Getaways</p></div>
-        <div class="bach-icon-card"><div class="icon">✈️</div><p>Group Travel</p></div>
+
+      <div class="special-card featured">
+        <div class="icon">🎲</div>
+        <h3>Mystery Trips</h3>
+        <p class="special-hook">"You give me the budget. I pick the adventure."</p>
+        <p class="special-desc">No destination. No spoilers. Just pack your bags and trust the adventure.</p>
+        <ul>
+          <li>Departure airport & dates</li>
+          <li>Total budget</li>
+          <li>Domestic or international</li>
+          <li>Passport status & preferences</li>
+          <li>Hard NOs, accessibility & dietary needs</li>
+        </ul>
+        <div class="special-cta"><a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank">Let's Plan It ♡</a></div>
       </div>
+
+      <div class="special-card">
+        <div class="icon">🥂</div>
+        <h3>Bachelorette Trips</h3>
+        <p class="special-desc">Planning specifically for bachelorette celebrations.</p>
+        <ul>
+          <li>Accommodations & activities</li>
+          <li>Restaurants & nightlife</li>
+          <li>Transportation suggestions</li>
+          <li>Group friendly itinerary</li>
+        </ul>
+        <div class="special-cta"><a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank">Let's Plan It ♡</a></div>
+      </div>
+
+      <div class="special-card">
+        <div class="icon">👯‍♀️</div>
+        <h3>Group Travel</h3>
+        <p class="special-desc">Planning for multiple travelers.</p>
+        <ul>
+          <li>Accommodations & activities</li>
+          <li>Group friendly logistics</li>
+          <li>Budgets</li>
+          <li>Itinerary coordination</li>
+        </ul>
+        <div class="special-cta"><a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank">Let's Plan It ♡</a></div>
+      </div>
+
     </div>
   </section>
 
@@ -235,45 +389,45 @@
   <section class="alacarte-section">
     <div class="alacarte-intro">
       <h2>Add-Ons</h2>
-      <p class="script">À la carte services</p>
+      <p class="script">À la carte services - $30 each </p>
       <p>Need just one thing? Pick a single service and let's make it happen.</p>
     </div>
 
     <div class="alacarte-grid">
       <div class="alacarte-card">
         <div class="icon">📋</div>
-        <h3>Visa Consultation</h3>
-        <p>Guidance on visa requirements and how to get started.</p>
+        <h3>Visa & Entry Research</h3>
+        <p>Research on visa and destination entry requirements.</p>
       </div>
       <div class="alacarte-card">
-        <div class="icon">🗓️</div>
-        <h3>Custom Itinerary</h3>
-        <p>A day-by-day itinerary built around your goals and travel style.</p>
+        <div class="icon">🧳</div>
+        <h3>Custom Packing List</h3>
+        <p>A personalized packing checklist based on destination, weather, activities & trip length.</p>
       </div>
       <div class="alacarte-card">
-        <div class="icon">💸</div>
-        <h3>Budget Trip Ideas</h3>
-        <p>Travel inspiration tailored to your budget — no luxury required.</p>
+        <div class="icon">🚕</div>
+        <h3>Airport & Transportation Plan</h3>
+        <p>Airport arrival information and recommendations for getting around your destination.</p>
+      </div>
+      <div class="alacarte-card">
+        <div class="icon">🍸</div>
+        <h3>Restaurant + Nightlife Guide</h3>
+        <p>Curated restaurants, bars, lounges, nightlife & entertainment based on your preferences.</p>
       </div>
       <div class="alacarte-card">
         <div class="icon">🎯</div>
-        <h3>Activity List</h3>
-        <p>A curated list of things to do, see, and experience at your destination.</p>
+        <h3>Activity Guide</h3>
+        <p>Curated activities, attractions, excursions & experiences.</p>
       </div>
       <div class="alacarte-card">
-        <div class="icon">🔍</div>
-        <h3>Destination Research</h3>
-        <p>In-depth research on your chosen destination: safety, culture, seasons, and more.</p>
-      </div>
-      <div class="alacarte-card">
-        <div class="icon">🤝</div>
-        <h3>Travel Planning Support</h3>
-        <p>General support and guidance throughout your planning process.</p>
+        <div class="icon">🔎</div>
+        <h3>Itinerary Review</h3>
+        <p>Already planned your trip? I'll review it and recommend improvements for timing, logistics & flow.</p>
       </div>
     </div>
 
     <div class="alacarte-cta">
-      <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn-outline">Get Started →</a>
+      <a href="https://forms.gle/ekwePsaMzjT9Fvuw7" target="_blank" class="btn-outline">Add It to My Trip ♡</a>
     </div>
   </section>
 
